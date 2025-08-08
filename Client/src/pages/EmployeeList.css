@@ -1,0 +1,198 @@
+/* src/pages/EmployeeList.css */
+.emp-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg,#f093fb 0%,#f5576c 100%);
+  padding:40px 20px;font-family:Inter,Arial,sans-serif;
+}
+.emp-container header{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:30px;color:#fff;
+}
+.emp-container header button{
+  margin-left:12px;border:none;cursor:pointer;
+  background:#fff;color:#f5576c;padding:10px 16px;
+  border-radius:10px;font-weight:600;display:flex;align-items:center;gap:6px;
+}
+table{width:100%;background:#fff;border-radius:20px;overflow:hidden}
+th,td{padding:16px;text-align:left}
+tbody tr:nth-child(even){background:#faf5ff}
+tbody tr:hover{background:#f093fb15}
+/* Search and Filter Styles */
+.filter-section {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid #e9ecef;
+}
+
+.search-box {
+  margin-bottom: 1.5rem;
+}
+
+.search-input-container {
+  position: relative;
+  max-width: 400px;
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6c757d;
+  font-size: 1.1rem;
+  pointer-events: none;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 40px 12px 40px;
+  border: 2px solid #e0e0e0;
+  border-radius: 25px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1), 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.clear-search-btn {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #6c757d;
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 4px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.clear-search-btn:hover {
+  background: #f8f9fa;
+  color: #495057;
+}
+
+.filter-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  align-items: end;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #495057;
+  margin-bottom: 0.25rem;
+}
+
+.filter-select {
+  padding: 10px 12px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  background: white;
+  transition: border-color 0.3s ease;
+  cursor: pointer;
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.clear-filters-btn {
+  background: linear-gradient(135deg, #ff6b6b, #ff5252);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  height: fit-content;
+}
+
+.clear-filters-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+}
+
+/* Enhanced table container */
+.table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  background: white;
+}
+
+/* Highlight search terms */
+.search-highlight {
+  background: rgba(255, 235, 59, 0.3);
+  padding: 1px 3px;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .filter-section {
+    padding: 1rem;
+  }
+  
+  .search-input-container {
+    max-width: 100%;
+  }
+  
+  .filter-controls {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .clear-filters-btn {
+    justify-self: center;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-section {
+    padding: 0.75rem;
+  }
+  
+  .search-input {
+    padding: 10px 35px 10px 35px;
+    font-size: 0.9rem;
+  }
+  
+  .filter-select {
+    padding: 8px 10px;
+    font-size: 0.85rem;
+  }
+  
+  .clear-filters-btn {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+}

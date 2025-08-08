@@ -1,0 +1,453 @@
+/* Signup Page - FULLY RESPONSIVE VERSION */
+
+/* Base styles */
+body, html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-wrapper {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  box-sizing: border-box;
+}
+
+.signup-card {
+  background: rgba(255, 255, 255, .95);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 40px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, .1);
+  animation: slideUp .6s ease-out;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, .2);
+  box-sizing: border-box;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.signup-card h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 24px;
+  text-align: center;
+  color: #2d3748;
+  line-height: 1.2;
+}
+
+.signup-card label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 20px;
+}
+
+.signup-card label svg {
+  margin-bottom: 6px;
+  color: #667eea;
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.signup-card input {
+  padding: 16px 20px;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  font-size: 16px;
+  transition: all .3s ease;
+  background: rgba(255, 255, 255, .8);
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.signup-card input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, .12);
+  background: rgba(255, 255, 255, .95);
+}
+
+.signup-card input::placeholder {
+  color: #a0aec0;
+  opacity: 1;
+}
+
+.signup-card span {
+  color: #e53e3e;
+  font-size: 12px;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+.signup-card button[type="submit"] {
+  width: 100%;
+  padding: 16px 24px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .3s ease;
+  box-sizing: border-box;
+  min-height: 52px;
+  font-family: inherit;
+}
+
+.signup-card button[disabled] {
+  opacity: .7;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.signup-card button:hover:not([disabled]) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, .3);
+}
+
+.signup-card button:active:not([disabled]) {
+  transform: translateY(0);
+}
+
+.back-btn {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  border: none;
+  background: transparent;
+  color: #6c757d;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 8px;
+  border-radius: 8px;
+  transition: all .2s ease;
+  font-family: inherit;
+}
+
+.back-btn:hover {
+  background: rgba(108, 117, 125, .1);
+  color: #495057;
+}
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* Large tablets (1024px and down) */
+@media (max-width: 1024px) {
+  .signup-wrapper {
+    padding: 16px;
+  }
+  
+  .signup-card {
+    max-width: 380px;
+  }
+}
+
+/* Standard tablets (768px and down) */
+@media (max-width: 768px) {
+  .signup-wrapper {
+    padding: 12px;
+    align-items: flex-start;
+    padding-top: 40px;
+  }
+  
+  .signup-card {
+    padding: 32px 24px;
+    max-width: 100%;
+    border-radius: 20px;
+    margin: 0 auto;
+  }
+  
+  .signup-card h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .back-btn {
+    left: 12px;
+    top: 12px;
+    padding: 12px;
+  }
+}
+
+/* Mobile phones (480px and down) */
+@media (max-width: 480px) {
+  .signup-wrapper {
+    padding: 8px;
+    padding-top: 20px;
+    min-height: 100vh;
+    align-items: stretch;
+  }
+  
+  .signup-card {
+    padding: 24px 20px;
+    border-radius: 16px;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    animation: slideUp .4s ease-out;
+  }
+  
+  .signup-card h2 {
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+  
+  .signup-card label {
+    margin-bottom: 16px;
+  }
+  
+  .signup-card input {
+    padding: 14px 16px;
+    font-size: 16px; /* Prevents zoom on iOS */
+    border-radius: 10px;
+  }
+  
+  .signup-card button[type="submit"] {
+    padding: 14px 20px;
+    font-size: 16px;
+    border-radius: 10px;
+    min-height: 48px;
+  }
+  
+  .back-btn {
+    left: 8px;
+    top: 8px;
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}
+
+/* Very small phones (360px and down) */
+@media (max-width: 360px) {
+  .signup-wrapper {
+    padding: 4px;
+    padding-top: 16px;
+  }
+  
+  .signup-card {
+    padding: 20px 16px;
+    border-radius: 14px;
+  }
+  
+  .signup-card h2 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  
+  .signup-card label {
+    margin-bottom: 14px;
+  }
+  
+  .signup-card input {
+    padding: 12px 14px;
+    border-radius: 8px;
+  }
+  
+  .signup-card button[type="submit"] {
+    padding: 12px 16px;
+    border-radius: 8px;
+    min-height: 44px;
+  }
+  
+  .back-btn {
+    left: 4px;
+    top: 4px;
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
+
+/* ===== LANDSCAPE ORIENTATION ===== */
+@media (max-width: 768px) and (orientation: landscape) {
+  .signup-wrapper {
+    align-items: center;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+  
+  .signup-card {
+    max-width: 400px;
+    padding: 20px 24px;
+  }
+  
+  .signup-card h2 {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  
+  .signup-card label {
+    margin-bottom: 12px;
+  }
+  
+  .signup-card input {
+    padding: 12px 16px;
+  }
+  
+  .signup-card button[type="submit"] {
+    padding: 12px 20px;
+    min-height: 44px;
+  }
+}
+
+/* ===== TOUCH DEVICE OPTIMIZATIONS ===== */
+@media (hover: none) and (pointer: coarse) {
+  .signup-card button[type="submit"] {
+    min-height: 48px;
+  }
+  
+  .back-btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .signup-card input {
+    min-height: 44px;
+  }
+}
+
+/* ===== HIGH DPI DISPLAYS ===== */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .signup-card {
+    box-shadow: 0 25px 50px rgba(0, 0, 0, .15);
+  }
+  
+  .signup-card input:focus {
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, .15);
+  }
+  
+  .signup-card button:hover:not([disabled]) {
+    box-shadow: 0 15px 30px rgba(102, 126, 234, .4);
+  }
+}
+
+/* ===== LOADING STATES ===== */
+.signup-card button[type="submit"]:disabled {
+  position: relative;
+}
+
+.signup-card button[type="submit"]:disabled::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid transparent;
+  border-top: 2px solid rgba(255, 255, 255, .8);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ===== ACCESSIBILITY IMPROVEMENTS ===== */
+.signup-card input:focus,
+.signup-card button:focus,
+.back-btn:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signup-card {
+    animation: none;
+  }
+  
+  .signup-card button:hover:not([disabled]) {
+    transform: none;
+  }
+  
+  .signup-card button[type="submit"]:disabled::after {
+    animation: none;
+  }
+}
+
+/* ===== DARK MODE SUPPORT ===== */
+@media (prefers-color-scheme: dark) {
+  .signup-card {
+    background: rgba(45, 55, 72, .95);
+    border: 1px solid rgba(255, 255, 255, .1);
+  }
+  
+  .signup-card h2 {
+    color: #f7fafc;
+  }
+  
+  .signup-card label {
+    color: #e2e8f0;
+  }
+  
+  .signup-card input {
+    background: rgba(45, 55, 72, .8);
+    border-color: #4a5568;
+    color: #f7fafc;
+  }
+  
+  .signup-card input:focus {
+    background: rgba(45, 55, 72, .95);
+    border-color: #667eea;
+  }
+  
+  .signup-card input::placeholder {
+    color: #a0aec0;
+  }
+  
+  .back-btn {
+    color: #a0aec0;
+  }
+  
+  .back-btn:hover {
+    background: rgba(160, 174, 192, .1);
+    color: #e2e8f0;
+  }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  .signup-wrapper {
+    background: white;
+    padding: 0;
+  }
+  
+  .signup-card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+    backdrop-filter: none;
+    background: white;
+  }
+  
+  .back-btn {
+    display: none;
+  }
+}
