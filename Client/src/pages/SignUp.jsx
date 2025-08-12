@@ -27,6 +27,10 @@ export default function Signup() {
       <button disabled={isSubmitting}>
         {isSubmitting ? 'Creating…' : 'Sign up'}
       </button>
+       <p className="signup-link">
+          Already have an account?{' '}
+          <span onClick={() => navigate('/login')}>Login</span>
+        </p>
     </form>
   );
 }

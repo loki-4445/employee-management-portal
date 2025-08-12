@@ -1,0 +1,14 @@
+# .dockerignore
+target/
+!target/employee-management-system.jar
+.git
+.gitignore
+README.md
+.env
+.env.local
+.env.production
+.env.staging
+node_modules
+npm-debug.log
+Dockerfile
+.dockerignore
