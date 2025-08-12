@@ -23,7 +23,7 @@ export default function AddEmployee() {
 
       console.log('Sending employee data:', employeeData);
 
-      const response = await http('http://localhost:8080/api/employee', {
+      const response = await http('https://employee-management-api-nql8.onrender.com/api/employee', {
         method: 'POST',
         body: JSON.stringify(employeeData)
       });

@@ -1,4 +1,4 @@
-// src/pages/EmployeeList.jsx - WITH SEARCH & FILTER
+// src/pages/EmployeeList.jsx - WITH SEARCH & FILTER (CORRECTED)
 import { useEffect, useState, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useHttp } from '../api/http';
@@ -25,7 +25,7 @@ export default function EmployeeList() {
       setLoading(true);
       setError(null);
       
-      const data = await http('http://localhost:8080/api/employee');
+      const data = await http('https://employee-management-api-nql8.onrender.com/api/employee');
       console.log('Fetched employees:', data);
       setAllEmployees(data);
       
@@ -101,7 +101,7 @@ export default function EmployeeList() {
     if (!window.confirm('Delete this employee?')) return;
     
     try {
-      await http(`http://localhost:8080/api/employee/${id}`, { method: 'DELETE' });
+      await http(`https://employee-management-api-nql8.onrender.com/api/employee/${id}`, { method: 'DELETE' });
       setAllEmployees(prev => prev.filter(emp => emp.id !== id));
     } catch (err) {
       alert('Failed to delete employee: ' + err.message);
@@ -142,9 +142,9 @@ export default function EmployeeList() {
       {/* Header */}
       <div className="header">
         <h1>👥 Employee Management</h1>
-        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+        <div className="header-info">
           {allEmployees && allEmployees.length > 0 && (
-            <span style={{ color: '#666', fontSize: '0.9rem' }}>
+            <span className="org-info">
               Organization: {allEmployees[0]?.organization?.name || 'N/A'}
             </span>
           )}
@@ -282,12 +282,12 @@ export default function EmployeeList() {
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Employee Code</th>
+                  <th className="mobile-hide">Employee Code</th>
                   <th>Name</th>
-                  <th>Email</th>
-                  <th>Department</th>
-                  <th>Position</th>
-                  <th>Hire Date</th>
+                  <th className="tablet-hide">Email</th>
+                  <th className="mobile-hide">Department</th>
+                  <th className="tablet-hide">Position</th>
+                  <th className="desktop-only">Hire Date</th>
                   <th>Actions</th>
                 </tr>
               </thead>
@@ -295,49 +295,61 @@ export default function EmployeeList() {
                 {filteredEmployees.map(employee => (
                   <tr key={employee.id}>
                     <td>{employee.id}</td>
-                    <td>
+                    <td className="mobile-hide">
                       <span className={!employee.employeeCode ? 'text-muted' : ''}>
                         {employee.employeeCode || 'N/A'}
                       </span>
                     </td>
-                    <td>
-                      <strong>
-                        {employee.firstname} {employee.lastname}
-                      </strong>
+                    <td data-label="Name">
+                      <div className="employee-name">
+                        <strong>
+                          {employee.firstname} {employee.lastname}
+                        </strong>
+                        <div className="mobile-details">
+                          {employee.department && (
+                            <small className="mobile-dept">{employee.department}</small>
+                          )}
+                          {employee.position && (
+                            <small className="mobile-pos">{employee.position}</small>
+                          )}
+                        </div>
+                      </div>
                     </td>
-                    <td>
+                    <td className="tablet-hide">
                       <span className={!employee.email ? 'text-muted' : ''}>
                         {employee.email || 'No email'}
                       </span>
                     </td>
-                    <td>
+                    <td className="mobile-hide">
                       <span className={!employee.department ? 'text-muted' : ''}>
                         {employee.department || 'N/A'}
                       </span>
                     </td>
-                    <td>
+                    <td className="tablet-hide">
                       <span className={!employee.position ? 'text-muted' : ''}>
                         {employee.position || 'N/A'}
                       </span>
                     </td>
-                    <td>
+                    <td className="desktop-only">
                       <span className={!employee.hireDate ? 'text-muted' : ''}>
                         {employee.hireDate 
                           ? new Date(employee.hireDate).toLocaleDateString() 
                           : 'Not set'}
                       </span>
                     </td>
-                    <td>
-                      <Link to={`/edit/${employee.id}`} className="action-btn" title="Edit">
-                        ✏️
-                      </Link>
-                      <button 
-                        onClick={() => deleteEmployee(employee.id)} 
-                        className="action-btn delete-btn"
-                        title="Delete"
-                      >
-                        🗑️
-                      </button>
+                    <td data-label="Actions">
+                      <div className="action-buttons">
+                        <Link to={`/edit/${employee.id}`} className="action-btn" title="Edit">
+                          ✏️
+                        </Link>
+                        <button 
+                          onClick={() => deleteEmployee(employee.id)} 
+                          className="action-btn delete-btn"
+                          title="Delete"
+                        >
+                          🗑️
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}

@@ -8,7 +8,7 @@ export default function EmployeeForm() {
   const http = useHttp();
 
   async function onSubmit(data) {
-    await http('http://localhost:8080/api/employee', {
+    await http('https://employee-management-api-nql8.onrender.com/api/employee', {
       method:'POST',
       headers:{ 'Content-Type':'application/json' },
       body: JSON.stringify(data)

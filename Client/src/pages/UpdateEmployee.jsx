@@ -14,7 +14,7 @@ export default function UpdateEmployee() {
   useEffect(() => {
     async function loadEmployee() {
       try {
-        const employee = await http(`http://localhost:8080/api/employee/${id}`);
+        const employee = await http(`https://employee-management-api-nql8.onrender.com/api/employee/${id}`);
         console.log('Loaded employee:', employee);
         
         const formattedEmployee = {
@@ -43,7 +43,7 @@ export default function UpdateEmployee() {
         hireDate: data.hireDate || null
       };
 
-      await http(`http://localhost:8080/api/employee/${id}`, {
+      await http(`https://employee-management-api-nql8.onrender.com/api/employee/${id}`, {
         method: 'PUT',
         body: JSON.stringify(employeeData)
       });

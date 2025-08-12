@@ -1,4 +1,4 @@
-// src/auth/AuthProvider.jsx
+// src/auth/AuthProvider.jsx - CORRECTED FOR PRODUCTION
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -24,32 +24,51 @@ export function AuthProvider({ children }) {
 
   /* -------------- API helpers -------------- */
   async function login(username, password) {
-    const res = await fetch('http://localhost:8080/api/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, password })
-    });
-    
-    if (!res.ok) throw new Error('Bad credentials');
-    const body = await res.json();
-    console.log('Login response:', body);
-    
-    // Store credentials for Basic Auth
-    localStorage.setItem('auth-username', username);
-    localStorage.setItem('auth-password', password);
-    setToken('authenticated');
-    return body;
+    try {
+      const res = await fetch('https://employee-management-api-nql8.onrender.com/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+      
+      if (!res.ok) {
+        const errorText = await res.text();
+        throw new Error(errorText || 'Login failed');
+      }
+      
+      const body = await res.json();
+      console.log('✅ Login response:', body);
+      
+      // Store credentials for Basic Auth
+      localStorage.setItem('auth-username', username);
+      localStorage.setItem('auth-password', password);
+      setToken('authenticated');
+      return body;
+    } catch (error) {
+      console.error('❌ Login error:', error);
+      throw error;
+    }
   }
 
   async function register(data) {
-    const res = await fetch('http://localhost:8080/api/auth/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    });
-    if (!res.ok) {
-      const msg = await res.text();
-      throw new Error(msg);
+    try {
+      // ✅ FIXED: Use deployed backend URL (not localhost)
+      const res = await fetch('https://employee-management-api-nql8.onrender.com/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      
+      if (!res.ok) {
+        const errorText = await res.text();
+        throw new Error(errorText || 'Registration failed');
+      }
+      
+      console.log('✅ User registered successfully');
+      return await res.json(); // Return response data if needed
+    } catch (error) {
+      console.error('❌ Registration error:', error);
+      throw error;
     }
   }
 
@@ -57,6 +76,8 @@ export function AuthProvider({ children }) {
     setToken(null);
     localStorage.removeItem('auth-username');
     localStorage.removeItem('auth-password');
+    localStorage.removeItem('jwt'); // Clean up any old JWT tokens
+    console.log('🚪 User logged out');
     navigate('/login');
   }
 
@@ -64,5 +85,5 @@ export function AuthProvider({ children }) {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
-// ✅ EXPORT the useAuth hook - this was missing!
+// ✅ EXPORT the useAuth hook
 export const useAuth = () => useContext(AuthContext);
