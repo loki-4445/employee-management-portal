@@ -1,7 +1,5 @@
-# employee-management-portal
-A full-stack responsive Employee Management System built with Spring Boot, PostgreSQL, and React, supporting user authentication, employee CRUD, filtering, and cloud deployment on Render and Netlify.
 # Employee Management Portal
-
+A full-stack responsive Employee Management System built with Spring Boot, PostgreSQL, and React, supporting user authentication, employee CRUD, filtering, and cloud deployment on Render and Netlify.
 **A modern employee management system built with Spring Boot, PostgreSQL, and React.**
 
 This application allows organizations to manage employee details, with powerful features including user authentication, secure CRUD operations, advanced filtering/search, and full mobile responsiveness. The backend is deployed on [Render](https://render.com/) and the frontend is hosted on [Netlify](https://netlify.com/).
